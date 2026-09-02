@@ -2,9 +2,7 @@
 
 {{ define "main" }}
   <main>
-    <h2 style="margin-top:0"
-        data-it="{{ .Title }}"
-        data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</h2>
+    <h2 style="margin-top:0">{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}</h2>
     <p class="post-meta">
       {{ .Date.Format "2 January 2006" }} &middot; {{ .ReadingTime }} min
       {{ with .Params.tags }}
@@ -32,11 +30,9 @@
     {{ end }}
 
     <nav class="post-nav">
-      <a href="{{ .Site.Home.RelPermalink }}" data-it="← tutti i post" data-en="← all posts">← tutti i post</a>
+      <a href="{{ .Site.Home.RelPermalink }}">← all posts</a>
       {{ with .NextInSection }}
-        <a href="{{ .RelPermalink }}"
-           data-it="{{ .Title }} →"
-           data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }} →">{{ .Title }} →</a>
+        <a href="{{ .RelPermalink }}">{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }} →</a>
       {{ end }}
     </nav>
 

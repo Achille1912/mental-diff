@@ -3,7 +3,7 @@
 {{ define "main" }}
   <main>
     <p class="post-meta" style="margin-bottom:1.5rem">
-      <span data-it="Tag" data-en="Tag">Tag</span>: {{ .Data.Term }}
+      Tag: {{ .Data.Term }}
     </p>
 
     {{ if .Pages }}
@@ -11,9 +11,7 @@
         {{ range .Pages.ByDate.Reverse }}
           <li>
             <div>
-              <a href="{{ .RelPermalink }}"
-                 data-it="{{ .Title }}"
-                 data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</a>
+              <a href="{{ .RelPermalink }}">{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}</a>
               {{ with .Params.tags }}
                 <div class="post-tags">
                   {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ "tags/" | relURL }}{{ $t | urlize }}/">{{ $t }}</a>{{ end }}
@@ -25,11 +23,11 @@
         {{ end }}
       </ul>
     {{ else }}
-      <p class="secondary" data-it="Nessun post con questo tag." data-en="No posts with this tag.">Nessun post con questo tag.</p>
+      <p class="secondary">No posts with this tag.</p>
     {{ end }}
 
     <p style="margin-top:1.5rem">
-      <a href="{{ .Site.Home.RelPermalink }}" data-it="← tutti i post" data-en="← all posts">← tutti i post</a>
+      <a href="{{ .Site.Home.RelPermalink }}">← all posts</a>
     </p>
   </main>
 {{ end }}

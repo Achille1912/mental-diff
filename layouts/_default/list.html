@@ -9,9 +9,7 @@
         {{ range .Pages }}
           <li>
             <div>
-              <a href="{{ .RelPermalink }}"
-                 data-it="{{ .Title }}"
-                 data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</a>
+              <a href="{{ .RelPermalink }}">{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}</a>
               {{ with .Params.tags }}
                 <div class="post-tags">
                   {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ "tags/" | relURL }}{{ $t | urlize }}/">{{ $t }}</a>{{ end }}
@@ -23,7 +21,7 @@
         {{ end }}
       </ul>
     {{ else }}
-      <p class="secondary" data-it="Nessun post ancora." data-en="No posts yet.">Nessun post ancora.</p>
+      <p class="secondary">No posts yet.</p>
     {{ end }}
   </main>
 {{ end }}

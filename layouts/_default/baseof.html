@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <script>(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme', t==='dark'?'dark':'light');}catch(e){}})();</script>
@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="{{ "style.css" | relURL }}">
   {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}">{{ end }}
   <script src="{{ "theme.js" | relURL }}"></script>
-  <script src="{{ "lang.js" | relURL }}"></script>
 </head>
 <body>
 <div class="container">
@@ -28,13 +27,12 @@
     <h1><a href="{{ .Site.Home.RelPermalink }}"><img class="logo-icon" src="{{ "avatar.jpg" | relURL }}" alt="">{{ site.Title }}</a></h1>
     <p class="tagline">Hug the complexity</p>
     <nav class="menu">
-      <a href="{{ .Site.Home.RelPermalink }}" class="active" data-it="blog" data-en="blog">blog</a>
-      <a href="{{ "tags/" | relURL }}" data-it="tag" data-en="tags">tag</a>
-      <a href="{{ site.Params.portfolioURL }}" data-it="portfolio" data-en="portfolio">portfolio</a>
-      <a href="{{ site.Params.portfolioURL }}#contatti" data-it="contatti" data-en="contact">contatti</a>
+      <a href="{{ .Site.Home.RelPermalink }}" class="active">blog</a>
+      <a href="{{ "tags/" | relURL }}">tags</a>
+      <a href="{{ site.Params.portfolioURL }}">portfolio</a>
+      <a href="{{ site.Params.portfolioURL }}#contact">contact</a>
       <a href="https://github.com/achille1912" target="_blank" rel="noopener">github</a>
       <button id="theme-toggle">dark</button>
-      <button id="lang-toggle">en</button>
     </nav>
   </header>
 
