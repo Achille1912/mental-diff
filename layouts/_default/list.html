@@ -1,0 +1,29 @@
+{{ define "title" }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}{{ end }}
+
+{{ define "main" }}
+  <main>
+    {{ with .Content }}<div class="intro">{{ . }}</div>{{ end }}
+
+    {{ if .Pages }}
+      <ul class="post-list">
+        {{ range .Pages }}
+          <li>
+            <div>
+              <a href="{{ .RelPermalink }}"
+                 data-it="{{ .Title }}"
+                 data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</a>
+              {{ with .Params.tags }}
+                <div class="post-tags">
+                  {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ "tags/" | relURL }}{{ $t | urlize }}/">{{ $t }}</a>{{ end }}
+                </div>
+              {{ end }}
+            </div>
+            <span class="post-date">{{ .Date.Format "2 Jan 2006" }}</span>
+          </li>
+        {{ end }}
+      </ul>
+    {{ else }}
+      <p class="secondary" data-it="Nessun post ancora." data-en="No posts yet.">Nessun post ancora.</p>
+    {{ end }}
+  </main>
+{{ end }}

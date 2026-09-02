@@ -1,0 +1,22 @@
+{{ define "title" }}Tags — {{ site.Title }}{{ end }}
+
+{{ define "main" }}
+  <main>
+    {{ if .Data.Terms.Alphabetical }}
+      <ul class="post-list">
+        {{ range .Data.Terms.Alphabetical }}
+          <li>
+            <a href="{{ .Page.RelPermalink }}">{{ .Page.Data.Term }}</a>
+            <span class="post-date">{{ .Count }}</span>
+          </li>
+        {{ end }}
+      </ul>
+    {{ else }}
+      <p class="secondary" data-it="Nessun tag ancora." data-en="No tags yet.">Nessun tag ancora.</p>
+    {{ end }}
+
+    <p style="margin-top:1.5rem">
+      <a href="{{ .Site.Home.RelPermalink }}" data-it="← tutti i post" data-en="← all posts">← tutti i post</a>
+    </p>
+  </main>
+{{ end }}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme', t==='dark'?'dark':'light');}catch(e){}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ block "title" . }}{{ .Title }}{{ end }}</title>
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+  <link rel="icon" type="image/jpeg" href="{{ "avatar.jpg" | relURL }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ with .Resources.ByType "image" }}
+    {{ with index . 0 }}<meta property="og:image" content="{{ .Permalink }}">{{ end }}
+  {{ end }}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,600;1,7..72,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+  {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}">{{ end }}
+  <script src="{{ "theme.js" | relURL }}"></script>
+  <script src="{{ "lang.js" | relURL }}"></script>
+</head>
+<body>
+<div class="container">
+
+  <header{{ if eq .Kind "page" }} class="compact"{{ end }}>
+    <h1><a href="{{ .Site.Home.RelPermalink }}"><img class="logo-icon" src="{{ "avatar.jpg" | relURL }}" alt="">{{ site.Title }}</a></h1>
+    <p class="tagline">Hug the complexity</p>
+    <nav class="menu">
+      <a href="{{ .Site.Home.RelPermalink }}" class="active" data-it="blog" data-en="blog">blog</a>
+      <a href="{{ "tags/" | relURL }}" data-it="tag" data-en="tags">tag</a>
+      <a href="{{ site.Params.portfolioURL }}" data-it="portfolio" data-en="portfolio">portfolio</a>
+      <a href="{{ site.Params.portfolioURL }}#contatti" data-it="contatti" data-en="contact">contatti</a>
+      <a href="https://github.com/achille1912" target="_blank" rel="noopener">github</a>
+      <button id="theme-toggle">dark</button>
+      <button id="lang-toggle">en</button>
+    </nav>
+  </header>
+
+  {{ block "main" . }}{{ end }}
+
+  <footer>
+    <span>© {{ now.Year }} {{ site.Title }}</span>
+    <a href="{{ "index.xml" | relURL }}">rss</a>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{{ define "title" }}{{ .Data.Term }} — {{ site.Title }}{{ end }}
+
+{{ define "main" }}
+  <main>
+    <p class="post-meta" style="margin-bottom:1.5rem">
+      <span data-it="Tag" data-en="Tag">Tag</span>: {{ .Data.Term }}
+    </p>
+
+    {{ if .Pages }}
+      <ul class="post-list">
+        {{ range .Pages.ByDate.Reverse }}
+          <li>
+            <div>
+              <a href="{{ .RelPermalink }}"
+                 data-it="{{ .Title }}"
+                 data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</a>
+              {{ with .Params.tags }}
+                <div class="post-tags">
+                  {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ "tags/" | relURL }}{{ $t | urlize }}/">{{ $t }}</a>{{ end }}
+                </div>
+              {{ end }}
+            </div>
+            <span class="post-date">{{ .Date.Format "2 Jan 2006" }}</span>
+          </li>
+        {{ end }}
+      </ul>
+    {{ else }}
+      <p class="secondary" data-it="Nessun post con questo tag." data-en="No posts with this tag.">Nessun post con questo tag.</p>
+    {{ end }}
+
+    <p style="margin-top:1.5rem">
+      <a href="{{ .Site.Home.RelPermalink }}" data-it="← tutti i post" data-en="← all posts">← tutti i post</a>
+    </p>
+  </main>
+{{ end }}

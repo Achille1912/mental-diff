@@ -1,0 +1,6 @@
+{{- /* Comportamento di default di Hugo: path così come scritto nel markdown,
+   risolto dal browser rispetto alla pagina corrente. Va bene qui perché la
+   pagina HTML reale ha sempre un "documento corrente" da cui risolvere i
+   path relativi delle immagini nel bundle. Per il feed RSS, che non ce l'ha,
+   vedi render-image.rss.xml. */ -}}
+<img src="{{ .Destination | safeURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }}>

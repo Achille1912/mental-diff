@@ -1,0 +1,66 @@
+{{ define "title" }}{{ .Title }} — {{ site.Title }}{{ end }}
+
+{{ define "main" }}
+  <main>
+    <h2 style="margin-top:0"
+        data-it="{{ .Title }}"
+        data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</h2>
+    <p class="post-meta">
+      {{ .Date.Format "2 January 2006" }} &middot; {{ .ReadingTime }} min
+      {{ with .Params.tags }}
+        &middot;
+        {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ "tags/" | relURL }}{{ $t | urlize }}/">{{ $t }}</a>{{ end }}
+      {{ end }}
+    </p>
+
+    <article class="post-body">
+      {{ .Content }}
+    </article>
+
+    {{ if .Params.math }}
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+      <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+      <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.querySelector('.post-body'), {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false}
+          ]
+        });"></script>
+    {{ end }}
+
+    <nav class="post-nav">
+      <a href="{{ .Site.Home.RelPermalink }}" data-it="← tutti i post" data-en="← all posts">← tutti i post</a>
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}"
+           data-it="{{ .Title }} →"
+           data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }} →">{{ .Title }} →</a>
+      {{ end }}
+    </nav>
+
+    <section id="comments">
+      <script>
+        (function () {
+          var s = document.createElement('script');
+          s.src = 'https://giscus.app/client.js';
+          s.setAttribute('data-repo', 'Achille1912/Achille1912.github.io');
+          s.setAttribute('data-repo-id', 'R_kgDOJ7Qtmw');
+          s.setAttribute('data-category', 'Announcements');
+          s.setAttribute('data-category-id', 'DIC_kwDOJ7Qtm84DEtk2');
+          s.setAttribute('data-mapping', 'pathname');
+          s.setAttribute('data-strict', '0');
+          s.setAttribute('data-reactions-enabled', '1');
+          s.setAttribute('data-emit-metadata', '0');
+          s.setAttribute('data-input-position', 'bottom');
+          s.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+          s.setAttribute('data-lang', 'en');
+          s.setAttribute('crossorigin', 'anonymous');
+          s.async = true;
+          document.getElementById('comments').appendChild(s);
+        })();
+      </script>
+    </section>
+  </main>
+{{ end }}

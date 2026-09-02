@@ -1,0 +1,151 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --content-primary: rgb(36, 36, 36);
+  --content-secondary: rgb(117, 117, 117);
+  --background: rgb(255, 255, 255);
+  --code-background: rgb(249, 249, 249);
+  --code-border: rgb(229, 229, 229);
+
+  --main-width: 780px;
+  --main-padding: 1.4em;
+  --font-body: 'Literata', Georgia, Cambria, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+
+/* Tema scelto esplicitamente dall'utente (vedi theme.js). Default: chiaro,
+   a prescindere dalle preferenze di sistema. */
+:root[data-theme="dark"] {
+  --content-primary: rgb(218, 218, 218);
+  --content-secondary: rgb(140, 140, 140);
+  --background: rgb(20, 20, 20);
+  --code-background: rgb(30, 30, 30);
+  --code-border: rgb(50, 50, 50);
+}
+
+body { transition: background-color 0.15s, color 0.15s; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--background);
+  color: var(--content-primary);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 1.5em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: var(--main-width);
+  margin: 0 auto;
+  padding: var(--main-padding);
+  padding-bottom: 3rem;
+}
+
+a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: var(--content-secondary); }
+strong, b { font-weight: 600; }
+small, .small { font-size: small; }
+.secondary { color: var(--content-secondary); }
+
+/* HEADER */
+header { margin-bottom: 2.5rem; }
+header h1 { font-size: 2em; font-weight: 600; line-height: 1.3; margin-bottom: 0.3rem; }
+header h1 a { text-decoration: none; display: inline-flex; align-items: center; gap: 0.55rem; }
+.tagline { font-style: italic; color: var(--content-secondary); font-size: 0.95em; margin-bottom: 1.4rem; }
+
+/* Foto profilo GitHub al posto dell'icona: quadrata in origine, la
+   rendiamo tonda. Il nome "Mental Diff" resta testo vero (site.Title). */
+header .logo-icon { height: 1.9rem; width: 1.9rem; object-fit: cover; border-radius: 50%; display: block; }
+
+/* Header compresso nella pagina del singolo articolo: il titolo del post
+   deve comparire subito, non dopo un blocco di intestazione intero. */
+header.compact { margin-bottom: 1.2rem; }
+header.compact h1 { font-size: 1.05em; margin-bottom: 0; }
+header.compact .logo-icon { height: 1.15rem; width: 1.15rem; }
+header.compact .tagline { display: none; }
+.menu { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: baseline; }
+.menu a, .menu button {
+  font-family: var(--font-body);
+  font-size: small;
+  font-weight: 300;
+  color: var(--content-secondary);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: inherit;
+}
+.menu a::before, .menu button::before { content: "/"; }
+.menu a:hover, .menu button:hover, .menu a.active { color: var(--content-primary); }
+.menu a.active { font-weight: 600; }
+
+/* TITOLI */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.3; }
+h2 { font-size: 1.8em; margin: 2rem 0 1.5rem; }
+h3 { font-size: 1.4em; margin: 1.8rem 0 1rem; }
+
+p { margin: 0 0 1.2rem; }
+p:last-child { margin-bottom: 0; }
+
+/* HOME */
+.intro { margin-bottom: 2.5rem; }
+.intro p { color: var(--content-secondary); }
+
+main > section { margin-bottom: 2.5rem; }
+main > section > h2 { font-size: 1.8em; margin: 0 0 1.2rem; }
+
+.entry { margin-bottom: 1.2rem; }
+.entry:last-child { margin-bottom: 0; }
+.entry-title { font-weight: 600; }
+.entry-meta { font-size: small; color: var(--content-secondary); }
+.entry-desc { color: var(--content-secondary); }
+
+.inline-list { color: var(--content-secondary); }
+
+.links-list { list-style: none; }
+.links-list li { margin-bottom: 0.4rem; }
+
+/* ELENCO POST */
+.post-list { list-style: none; }
+.post-list li { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.9rem; }
+.post-list .post-date { font-size: small; color: var(--content-secondary); white-space: nowrap; padding-top: 0.1rem; }
+.post-list .post-tags { font-size: small; color: var(--content-secondary); margin-top: 0.15rem; }
+
+/* POST */
+.post-meta { color: var(--content-secondary); font-size: small; margin-bottom: 2rem; }
+
+.post-body ul, .post-body ol { margin: 0 0 1.2rem 2rem; }
+.post-body li { margin-bottom: 0.3rem; }
+.post-body blockquote { border-left: 2px solid var(--code-border); padding-left: 1rem; margin: 1.2rem 0; color: var(--content-secondary); }
+.post-body img { max-width: 100%; height: auto; border: 1px solid var(--code-border); border-radius: 6px; }
+.post-body em { font-style: italic; }
+
+/* CODICE */
+code { font-family: var(--font-mono); font-size: 0.9em; }
+p code, li code { background: var(--code-background); border: 1px solid var(--code-border); border-radius: 4px; padding: 0.05em 0.3em; }
+pre { background: var(--code-background); border: 1px solid var(--code-border); border-radius: 10px; padding: 1.5rem; overflow-x: auto; margin: 1.5rem 0; line-height: 1.5; }
+pre code { background: none; border: none; padding: 0; }
+.highlight { margin: 1.5rem 0; }
+.highlight pre { margin: 0; }
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr, .chroma .kt { font-weight: 600; }
+.chroma .c, .chroma .c1, .chroma .cm, .chroma .cs, .chroma .cp { color: var(--content-secondary); font-style: italic; }
+.chroma .s, .chroma .s1, .chroma .s2, .chroma .sb, .chroma .sc, .chroma .sd { color: var(--content-secondary); }
+
+/* NAVIGAZIONE POST */
+.post-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; font-size: small; }
+
+/* COMMENTI (giscus) */
+#comments { margin-top: 3rem; }
+
+footer { margin-top: 3rem; font-size: small; color: var(--content-secondary); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+@media (max-width: 1024px) { :root { --main-width: 750px; } }
+@media (max-width: 640px) {
+  header h1 { font-size: 1.7em; }
+  h2, main > section > h2 { font-size: 1.5em; }
+  .post-list li { flex-direction: column; gap: 0.1rem; }
+}

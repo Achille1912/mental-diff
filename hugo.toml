@@ -1,0 +1,40 @@
+# Finché il dominio mentaldiff.dev non è configurato, il sito vive al suo
+# URL di default di GitHub Pages. Va aggiornato appena il dominio è attivo.
+baseURL = "https://achille1912.github.io/mental-diff/"
+languageCode = "it"
+title = "Mental Diff"
+enableRobotsTXT = true
+
+[taxonomies]
+  tag = "tags"
+
+# Il sito portfolio è un repository separato. Un solo posto da aggiornare
+# quando anche lui passa dal suo URL github.io al dominio vero.
+[params]
+  portfolioURL = "https://achille1912.github.io/"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# Lascia passare la matematica LaTeX così com'è (niente parsing markdown
+# dentro $...$ o $$...$$): il rendering vero lo fa KaTeX lato client,
+# vedi layouts/_default/single.html.
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [["\\[", "\\]"], ["$$", "$$"]]
+    inline = [["\\(", "\\)"], ["$", "$"]]
+
+# Evidenziazione a classi: i colori li decide style.css, non stili inline di Chroma.
+[markup.highlight]
+  noClasses = false
+  lineNos = false
+  guessSyntax = true
+
+# Serve per .Lastmod (usato in <atom:updated> nel feed RSS): prende la data
+# dell'ultimo commit git che ha toccato il file, non il mtime del filesystem
+# (che il checkout di GitHub Actions azzera per tutti i file ad ogni build).
+enableGitInfo = true

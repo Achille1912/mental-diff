@@ -1,0 +1,9 @@
+{{- $items := slice -}}
+{{- range .Pages -}}
+  {{- $items = $items | append (dict
+      "title"    .Title
+      "title_en" (or .Params.title_en .Title)
+      "date"     (.Date.Format "2006-01-02")
+      "url"      .Permalink) -}}
+{{- end -}}
+{{- $items | jsonify -}}

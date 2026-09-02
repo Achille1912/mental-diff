@@ -1,0 +1,15 @@
+{{- /*
+  Solo per l'output RSS: qui non c'è un "documento corrente" da cui il
+  reader possa risolvere un path relativo, quindi serve l'URL assoluto.
+  Sulla pagina HTML vera resta relativo (vedi render-image.html).
+*/ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $src := .Destination -}}
+{{- if not $u.IsAbs -}}
+  {{- with .Page.Resources.Get .Destination -}}
+    {{- $src = .Permalink -}}
+  {{- else -}}
+    {{- $src = .Destination | absURL -}}
+  {{- end -}}
+{{- end -}}
+<img src="{{ $src | safeURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }}>
