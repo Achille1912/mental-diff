@@ -1,6 +1,4 @@
-# Finché il dominio mentaldiff.dev non è configurato, il sito vive al suo
-# URL di default di GitHub Pages. Va aggiornato appena il dominio è attivo.
-baseURL = "https://achille1912.github.io/mental-diff/"
+baseURL = "https://mentaldiff.achillecannavale.dev/"
 languageCode = "it"
 title = "Mental Diff"
 enableRobotsTXT = true
@@ -8,10 +6,9 @@ enableRobotsTXT = true
 [taxonomies]
   tag = "tags"
 
-# Il sito portfolio è un repository separato. Un solo posto da aggiornare
-# quando anche lui passa dal suo URL github.io al dominio vero.
+# Il sito portfolio è un repository separato.
 [params]
-  portfolioURL = "https://achille1912.github.io/"
+  portfolioURL = "https://achillecannavale.dev/"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
