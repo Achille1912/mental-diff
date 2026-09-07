@@ -138,8 +138,34 @@ pre code { background: none; border: none; padding: 0; }
 /* NAVIGAZIONE POST */
 .post-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; font-size: small; }
 
-/* COMMENTI (giscus) */
-#comments { margin-top: 3rem; }
+/* FORM COMMENTI (email privata via Web3Forms) */
+#comment-form { margin-top: 3rem; }
+#comment-form h3 { font-size: 1.1em; margin-bottom: 0.4rem; }
+#cf { display: flex; flex-direction: column; gap: 0.8rem; max-width: 480px; }
+#cf input[type="text"], #cf input[type="email"], #cf textarea {
+  font-family: var(--font-body);
+  font-size: 0.95em;
+  color: var(--content-primary);
+  background: var(--background);
+  border: 1px solid var(--code-border);
+  border-radius: 4px;
+  padding: 0.6rem 0.7rem;
+  resize: vertical;
+}
+#cf input:focus, #cf textarea:focus { outline: none; border-color: var(--content-secondary); }
+#cf button {
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 0.9em;
+  color: var(--content-primary);
+  background: var(--code-background);
+  border: 1px solid var(--code-border);
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+}
+#cf button:hover { border-color: var(--content-secondary); }
+#cf button:disabled { opacity: 0.6; cursor: default; }
 
 footer { margin-top: 3rem; font-size: small; color: var(--content-secondary); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 

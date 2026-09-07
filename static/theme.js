@@ -7,21 +7,11 @@
     return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
   }
 
-  function syncGiscus(theme) {
-    var iframe = document.querySelector('iframe.giscus-frame');
-    if (!iframe) return;
-    iframe.contentWindow.postMessage(
-      { giscus: { setConfig: { theme: theme === 'dark' ? 'dark' : 'light' } } },
-      'https://giscus.app'
-    );
-  }
-
   function apply(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     var btn = document.getElementById('theme-toggle');
     if (btn) btn.textContent = theme === 'light' ? 'dark' : 'light';
-    syncGiscus(theme);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
