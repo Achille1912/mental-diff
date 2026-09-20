@@ -12,7 +12,7 @@ But, first of all, let me introduce myself. I'm a 25yo Software Engineer based i
 
 ## Why a Blog?
 
-Why do I want to start blogging? I think there are almost three reasons:
+Why do I want to start blogging? I think there are mainly three reasons:
 
 I want to improve my English for sure. Almost all my reads (technical stuffs, fiction books, manga, etc) are in English, but I'm not that good at speaking and at writing down my thoughts.
 
