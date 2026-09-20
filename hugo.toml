@@ -3,6 +3,9 @@ languageCode = "it"
 title = "Mental Diff"
 enableRobotsTXT = true
 
+# Template di Obsidian: non sono articoli, non vanno pubblicati.
+ignoreFiles = ["_templates"]
+
 [taxonomies]
   tag = "tags"
 

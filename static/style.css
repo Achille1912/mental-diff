@@ -118,6 +118,8 @@ main > section > h2 { font-size: 1.8em; margin: 0 0 1.2rem; }
 /* POST */
 .post-meta { color: var(--content-secondary); font-size: small; margin-bottom: 2rem; }
 
+.post-body { text-align: justify; hyphens: auto; }
+.post-body pre, .post-body code { text-align: left; hyphens: none; }
 .post-body ul, .post-body ol { margin: 0 0 1.2rem 2rem; }
 .post-body li { margin-bottom: 0.3rem; }
 .post-body blockquote { border-left: 2px solid var(--code-border); padding-left: 1rem; margin: 1.2rem 0; color: var(--content-secondary); }
