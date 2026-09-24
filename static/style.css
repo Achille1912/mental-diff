@@ -123,7 +123,10 @@ main > section > h2 { font-size: 1.8em; margin: 0 0 1.2rem; }
 .post-body ul, .post-body ol { margin: 0 0 1.2rem 2rem; }
 .post-body li { margin-bottom: 0.3rem; }
 .post-body blockquote { border-left: 2px solid var(--code-border); padding-left: 1rem; margin: 1.2rem 0; color: var(--content-secondary); }
-.post-body img { max-width: 100%; height: auto; border: 1px solid var(--code-border); border-radius: 6px; }
+.post-body figure { margin: 1.5rem 0; }
+.post-body figure img { margin: 0 auto 0.6rem; }
+.post-body figcaption { text-align: center; hyphens: none; font-size: small; color: var(--content-secondary); line-height: 1.4em; }
+.post-body img { display: block; margin: 1.5rem auto; max-width: 100%; height: auto; border: 1px solid var(--code-border); border-radius: 6px; }
 .post-body em { font-style: italic; }
 
 /* CODICE */

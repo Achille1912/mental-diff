@@ -12,4 +12,17 @@
     {{- $src = .Destination | absURL -}}
   {{- end -}}
 {{- end -}}
-<img src="{{ $src | safeURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }}>
+{{- /* Sintassi di Obsidian per ridimensionare: ![descrizione|400](img.png), ![400](img.png) o |400x300; è ciò che Obsidian scrive quando ridimensioni. */ -}}
+{{- $alt := .Text -}}
+{{- $w := "" -}}
+{{- $h := "" -}}
+{{- with findRESubmatch `^(?:(.*)\|)?(\d+)(?:x(\d+))?$` .Text 1 -}}
+  {{- $m := index . 0 -}}
+  {{- $alt = index $m 1 -}}
+  {{- $w = index $m 2 -}}
+  {{- $h = index $m 3 -}}
+{{- end -}}
+{{- /* La descrizione (alt) diventa anche didascalia visibile; in quel caso l'alt
+   dell'<img> resta vuoto per non far leggere il testo due volte ai lettori di schermo. */ -}}
+{{- if $alt -}}<figure><img src="{{ $src | safeURL }}" alt=""{{ with $w }} width="{{ . }}"{{ end }}{{ with $h }} height="{{ . }}"{{ end }}{{ with .Title }} title="{{ . }}"{{ end }}><figcaption>{{ $alt }}</figcaption></figure>
+{{- else -}}<img src="{{ $src | safeURL }}" alt=""{{ with $w }} width="{{ . }}"{{ end }}{{ with $h }} height="{{ . }}"{{ end }}{{ with .Title }} title="{{ . }}"{{ end }}>{{- end -}}
